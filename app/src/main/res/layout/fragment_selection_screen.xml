@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.widget.AdapterView"/>
+        <variable
+            name="viewModel"
+            type="com.aqif.homearticles.articles.selectionscreen.SelectionScreenViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/screen_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/counter_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@{viewModel.likeStatsNumber}"
+            android:textSize="30sp"
+            android:textColor="@android:color/black"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/articles_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text="@string/articleCount"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/count_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:onItemSelected="@{(parent,view,pos,id)->viewModel.onNumberOfArticlesChanged(parent.getSelectedItem())}"
+            app:layout_constraintLeft_toRightOf="@+id/articles_count"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_review"
+            android:textStyle="bold"
+            android:onClick="@{()->viewModel.onReviewPressed()}"
+            app:visibility="@{viewModel.isReviewEnabled}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/counter_divider"
+            app:layout_constraintBottom_toTopOf="@+id/like_button"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/article_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:url="@{viewModel.articleImage}"
+            app:visibility="@{viewModel.haveMoreArticles}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/counter_divider"
+            app:layout_constraintBottom_toTopOf="@+id/like_button"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:layout_margin="30dp"
+            android:text="@{viewModel.statusMessage}"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/like_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/counter_divider"
+            app:visibility="@{viewModel.isMessageEnabled}" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            app:visibility="@{viewModel.isMessageEnabled}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/counter_divider"
+            app:layout_constraintBottom_toTopOf="@+id/like_button"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/like_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            app:visibility="@{viewModel.isLikeDislikeEnabled}"
+            android:onClick="@{()->viewModel.onArticleLiked()}"
+            android:background="@android:color/transparent"
+            android:src="@drawable/like_button_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/back_button"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            app:visibility="@{viewModel.isBackEnabled}"
+            android:onClick="@{()->viewModel.onBackPressed()}"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back_button_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/like_button"
+            app:layout_constraintRight_toLeftOf="@+id/dislike_button"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/dislike_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            app:visibility="@{viewModel.isLikeDislikeEnabled}"
+            android:onClick="@{()->viewModel.onArticleDisliked()}"
+            android:background="@android:color/transparent"
+            android:src="@drawable/dislike_button_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/back_button"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

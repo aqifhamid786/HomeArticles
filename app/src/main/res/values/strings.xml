@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Home24 Articles</string>
+    <string name="button_start">Start</string>
+    <string name="button_review">Review</string>
+    <string name="separator">/</string>
+    <string name="articleCount">Articles Count:</string>
+
+    <string-array name="article_count_array">
+        <item>10</item>
+        <item>20</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>250</item>
+        <item>500</item>
+        <item>750</item>
+        <item>1500</item>
+        <item>3500</item>
+    </string-array>
+
+</resources>

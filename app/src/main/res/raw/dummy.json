@@ -1,0 +1,22 @@
+{
+  "resourceType": "articleCollection",
+  "articlesCount": 27834,
+  "_embedded": {
+    "articles": [
+      {
+        "media": [
+          {
+            "uri": "https:\/\/cdn1.home24.net\/resized\/media\/catalog\/product\/m\/a\/matratzenbezug-smood-webstoff-180-x-200cm-3477221.png?output-format=jpg&interpolation=progressive-bicubic",
+            "mimeType": "image\/png",
+            "type": null,
+            "priority": 0,
+            "size": null
+          }
+        ],
+        "sku": "M-SMOOD14",
+        "title": "Premium Komfortmatratze Smood"
+
+      }
+    ]
+  }
+}
