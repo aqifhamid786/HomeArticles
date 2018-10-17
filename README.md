@@ -1,4 +1,4 @@
-# HomeArticles
+# Home24 Articles Assignment
 
 ## Tools
 * Gradle version :4.4
